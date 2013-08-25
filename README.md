@@ -130,6 +130,21 @@ Wish List
 - Persistent session stores
 - XPC support on Mac
 
+If you wish to contribute middleware or other changes, please submit a pull request. If you are adding new middleware, add an subspec entry to the podspec in the appropriate place. And add your name to the contributors list below, along with adding acknowledgements for open source code.
+
+Contributors
+============
+
+- [Steve Streza](https://twitter.com/SteveStreza)
+- [Grant Butler](https://twitter.com/grantjbutler)
+- [Bill Williams](https://twitter.com/asmallteapot)
+
+Acknowledgements
+================
+
+- [NSData+Base64](http://www.cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html) by [Matt Gallagher](http://www.cocoawithlove.com/) for Base64 support
+- [NSDataCategory](http://www.cocoadev.com/index.pl?NSDataCategory)
+
 License
 =======
 
