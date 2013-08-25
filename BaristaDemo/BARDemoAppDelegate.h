@@ -26,6 +26,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <Barista/Barista.h>
+#import <Barista/BARSessionStore.h>
+#import <Barista/BARSession.h>
+#import <Barista/BARCookieParser.h>
+#import <Barista/BARCompressor.h>
+#import <Barista/BARBodyParser.h>
+#import <Barista/BARMustacheTemplateRenderer.h>
+#import <Barista/BARStaticFileServer.h>
+#import <Barista/BARRouter.h>
+
 @interface BARDemoAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
