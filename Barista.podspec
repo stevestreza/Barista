@@ -48,6 +48,12 @@ Pod::Spec.new do |s|
       sessions.source_files = 'Barista/Middleware/Sessions/*.{h,m}'
     end
 
+    middleware.subspec 'Authentication' do |authentication|
+      authentication.subspec 'Basic' do |basicAuth|
+        basicAuth.source_files = 'Barista/Middleware/Authentication/Basic/*.{h,m}', 'Barista/Categories/NSData+Base64.{h,m}'
+      end
+    end
+
     middleware.subspec 'Templates' do |templates|
       templates.source_files = 'Barista/Middleware/Templates/*.{h,m}'
 
