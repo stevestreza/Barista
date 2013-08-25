@@ -3,12 +3,12 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.7"
 
   s.name         = 'Barista'
-  s.version      = '0.0.2'
+  s.version      = '0.0.3'
   s.license      =  { :type => 'MIT', :file => 'LICENSE.md' }
   s.homepage     = 'https://github.com/stevestreza/Barista'
   s.authors      =  { 'Steve Streza' => 'steve@mustacheware.com' }
   s.summary      = 'A modular, embeddable web server for Objective-C.'
-  s.source       =  { :git => 'https://github.com/stevestreza/Barista.git', :tag => 'v0.0.2' }
+  s.source       =  { :git => 'https://github.com/stevestreza/Barista.git', :tag => 'v0.0.3' }
   s.requires_arc = true
 
   s.subspec 'Core' do |core|
