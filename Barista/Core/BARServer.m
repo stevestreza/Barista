@@ -167,7 +167,7 @@
 	
 	JLRoutes *router = _routers[method];
 	if(!router){
-		router = [[JLRoutes alloc] init];
+		router = [JLRoutes routesForScheme:method];
 		_routers[method] = router;
 	}
 	
