@@ -125,7 +125,7 @@ Wish List
 - Unit tests
 - Add middleware support for individual routes in the router
 - Automatic resource mapping to Core Data
-- SCSS/SASS/LESS/CoffeeScript/whatever compilation
+- SCSS/SASS/LESS/TypeScript/whatever compilation
 - Authorization middleware (<s>Basic auth</s>, Digest auth, OAuth 1.0, OAuth 2, etc.)
 - Persistent session stores
 - XPC support on Mac
