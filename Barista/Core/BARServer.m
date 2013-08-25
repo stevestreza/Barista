@@ -39,7 +39,6 @@
 	GCDAsyncSocket *_socket;
 	NSMutableArray *_connections;
 	NSMutableArray *_globalMiddleware;
-	NSMutableDictionary *_routers;
 }
 
 @synthesize listening=_listening;
@@ -74,9 +73,6 @@
 	}
 	NSError *error = nil;
 	_socket.delegate = self;
-	
-	_routers = nil;
-	[self setupRoutes];
 	
 	if(![_socket acceptOnInterface:self.boundHost port:self.port error:&error]){
 		NSLog(@"Couldn't start socket: %@", error);
@@ -122,18 +118,7 @@
 #pragma mark Connections
 
 -(void)connection:(BARConnection *)connection didReceiveRequest:(BARRequest *)request{
-	[self processMiddlewareForRequest:request forConnection:connection continueHandler:^{
-		JLRoutes *router = _routers[request.HTTPMethod.uppercaseString];
-		if(router){
-			BOOL didRoute = [router routeURL:request.URL withParameters:@{@"BARRequest": request, @"BARConnection": connection}];
-			if(didRoute){
-				// handled
-			}else{
-				// not handled
-				NSLog(@"Could not handle %@ %@", request.HTTPMethod, request.URL);
-			}
-		}
-	}];
+	[self processMiddlewareForRequest:request forConnection:connection continueHandler:NULL];
 }
 
 -(void)connection:(BARConnection *)connection willSendResponse:(BARResponse *)response forRequest:(BARRequest *)request handler:(void (^)(void))handler{
@@ -154,32 +139,6 @@
 	return _globalMiddleware;
 }
 
--(void)setupRoutes{
-	
-}
-
--(void)addRoute:(NSString *)route forHTTPMethod:(NSString *)method handler:(BOOL (^)(BARConnection *connection, BARRequest *request, NSDictionary *parameters))handler{
-	if(!_routers){
-		_routers = [NSMutableDictionary dictionary];
-	}
-	
-	method = [method uppercaseString];
-	
-	JLRoutes *router = _routers[method];
-	if(!router){
-		router = [JLRoutes routesForScheme:method];
-		_routers[method] = router;
-	}
-	
-	[router addRoute:route handler:^BOOL(NSDictionary *parameters){
-		BARRequest *request = parameters[@"BARRequest"];
-		BARConnection *connection = parameters[@"BARConnection"];
-		parameters = [parameters dictionaryWithValuesForKeys:[[parameters allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self != %@ AND self != %@", @"BARRequest", @"BARConnection"]]];
-		
-		return handler(connection, request, parameters);
-	}];
-}
-
 -(void)processMiddlewareForRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
 	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"STRAppServerMiddlewareEnumerator"];
 	if(!middlewareEnumerator){
@@ -198,7 +157,9 @@
 			[self processMiddlewareForRequest:request forConnection:connection continueHandler:handler];
 		}
 	}else{
-		handler();
+		if(handler){
+			handler();
+		}
 	}
 }
 
@@ -220,7 +181,9 @@
 			[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
 		}
 	}else{
-		handler();
+		if(handler){
+			handler();
+		}
 	}
 }
 

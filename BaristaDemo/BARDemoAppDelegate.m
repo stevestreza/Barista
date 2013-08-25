@@ -25,15 +25,73 @@
 //
 
 #import "BARDemoAppDelegate.h"
-#import "BARDemoServer.h"
 
 @implementation BARDemoAppDelegate {
-	BARDemoServer *server;
+	BARServer *server;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	server = [BARDemoServer serverWithPort:3333];
+	server = [BARServer serverWithPort:3333];
+	
+	NSURL *webAppURL = [[NSBundle mainBundle] URLForResource:@"WebApp" withExtension:@""];
+	
+	[server addGlobalMiddleware:[BARCookieParser cookieParser]];
+	[server addGlobalMiddleware:[BARSessionStore sessionStoreWithCookieBaseName:@"_streamers"]];
+	[server addGlobalMiddleware:[BARCompressor compressor]];
+	[server addGlobalMiddleware:[BARStaticFileServer fileServerWithDirectoryURL:[webAppURL  URLByAppendingPathComponent:@"public"]
+															   forURLBasePath:@"/public/"]];
+	[server addGlobalMiddleware:[[BARBodyParser alloc] init]];
+	[server addGlobalMiddleware:[BARMustacheTemplateRenderer rendererWithViewsDirectoryURL:[webAppURL URLByAppendingPathComponent:@"views"]]];
+	
+	BARRouter *router = [[BARRouter alloc] init];
+	[server addGlobalMiddleware:router];
+		
+	[router addRoute:@"/foo/:bar" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		NSLog(@"/foo/:bar parameters: %@", parameters);
+		request.session[@"bar"] = parameters[@"bar"];
+		BARResponse *response = [[BARResponse alloc] init];
+		response.statusCode = 200;
+		response.responseData = [[NSString stringWithFormat:@"Sup. I'm foo. Here's your thing - %@", parameters[@"bar"]] dataUsingEncoding:NSUTF8StringEncoding];
+		[connection sendResponse:response];
+		return YES;
+	}];
+	
+	[router addRoute:@"/testViews" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		
+		id bar = request.session[@"bar"];
+		if(!bar){
+			bar = @"";
+		}
+    	
+		BARResponse *response = [[BARResponse alloc] init];
+		response.statusCode = 200;
+		[response setViewToRender:@"test" withObject:@{@"foo": @"abc", @"bar": bar}];
+		[connection sendResponse:response];
+		
+		return YES;
+	}];
+	
+	[router addRoute:@"/" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		NSLog(@"/ parameters: %@", parameters);
+		NSLog(@"Session: %@", request.session[@"bar"]);
+		BARResponse *response = [[BARResponse alloc] init];
+		response.statusCode = 200;
+		response.responseData = [[NSString stringWithFormat:@"<html><body><div>OK - %@</div><div>%@</div></body></html>", request.URL.absoluteString, request.session[@"bar"]] dataUsingEncoding:NSUTF8StringEncoding];
+		[response setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+		[connection sendResponse:response];
+		return YES;
+	}];
+	
+	[router addRoute:@"/" forHTTPMethod:@"POST" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		NSLog(@"Body data: %@", request.body);
+		BARResponse *response = [[BARResponse alloc] init];
+		response.statusCode = 200;
+		response.body = @{@"omg": @"wtf"};
+		[connection sendResponse:response];
+		return YES;
+	}];
+	
 	server.listening = YES;
 }
 

@@ -10,33 +10,33 @@ Barista is currently early in development. It probably should not be used in an 
 
 The API is not stable, and could or will break for any reason.
 
-Usage
-=====
+Usage/Middleware
+================
 
-At its most basic, a Barista server is just an HTTP server (running on an arbitrary port) and a URL router based on [JLRoutes](https://github.com/joeldev/JLRoutes). Adding a route can be done in a few lines of code:
+At its most basic, a Barista server is just an HTTP server (running on an arbitrary port). It doesn't do anything by default. In order to actually handle requests, you need to add components to the server. Barista includes several components you might (or might not) want to add to your stack. These include:
 
-```objective-c
-	[self addRoute:@"/" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
-		BARResponse *response = [[BARResponse alloc] init];
-		response.statusCode = 200;
-		response.body = @"Hello world";
-		[connection sendResponse:response];
-		return YES;
-	}];
-```
-
-Middleware
-==========
-
-Barista includes several components you might (or might not) want to add to your stack. These include:
-
+- a URL router
 - cookies and sessions
 - support for gzipping responses
 - parsing request and response bodies (only JSON is supported right now)
 - serving static files from a directory, with automatic ETag/If-None-Match support
 - rendering templates (only [Mustache](https://github.com/groue/GRMustache) is supported right now)
 
-To add these components, Barista uses the concept of middleware to build a processing pipeline for each request. Barista exposes a `BaristaMiddleware` protocol that allows you intercept a request either (or both) before and after a request. The order you add middleware determines the order they run. For example, if you add a `BARCookieParser` and a `BARSessionStore` object for middleware, a request pipeline would look like this:
+To add these components, Barista uses the concept of middleware to build a processing pipeline for each request. Barista exposes a `BaristaMiddleware` protocol that allows you intercept a request either (or both) before and after a request. The order you add middleware determines the order they run. They typically should terminate in a `BARRouter`. Once you add the `BARRouter` based on [JLRoutes](https://github.com/joeldev/JLRoutes), you can handle as many different types of URLs as you like in a few lines of code.
+
+```objective-c
+	[self addRoute:@"/foo/:bar" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		NSString *responseMessage = [NSString stringWithFormat:@"Hello, %@", parameters[@"bar"]]; // parameters[@"bar"] maps to the key/value set in the URL, e.g. @"42" /foo/42
+
+		BARResponse *response = [[BARResponse alloc] init];
+		response.statusCode = 200;
+		response.body = [responseMessage dataUsingEncoding:NSUTF8StringEncoding];
+		[connection sendResponse:response];
+		return YES;
+	}];
+```
+
+Middleware are inherently chainable. If you add a `BARCookieParser` and a `BARSessionStore` before your `BARRouter`, a request pipeline would look like this:
 
 - an incoming request comes in
 - `BARCookieParser` parses the cookies in the request, if any, and adds that data to the request
@@ -123,7 +123,6 @@ Wish List
 
 - Better error handling
 - Unit tests
-- Change the router to a generic piece of middleware
 - Add middleware support for individual routes in the router
 - Automatic resource mapping to Core Data
 - SCSS/SASS/LESS/CoffeeScript/whatever compilation

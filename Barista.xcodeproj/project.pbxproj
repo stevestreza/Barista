@@ -16,7 +16,6 @@
 		1E3B29B2172F85AE00D9833A /* BaristaDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B29B0172F85AE00D9833A /* BaristaDemo.xcdatamodeld */; };
 		1E3B29B8172F85E600D9833A /* Barista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9DF1727424D00FB6CD1 /* Barista.framework */; };
 		1E3B29BA172F860200D9833A /* Barista.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9DF1727424D00FB6CD1 /* Barista.framework */; };
-		1E3B29C1172F86AF00D9833A /* BARDemoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B29C0172F86AF00D9833A /* BARDemoServer.m */; };
 		1E3B29C3172F88A400D9833A /* JLRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E3B29C2172F88A400D9833A /* JLRoutes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E3B29C7172F993500D9833A /* BARStaticFileServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E3B29C5172F993500D9833A /* BARStaticFileServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E3B29C8172F993500D9833A /* BARStaticFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B29C6172F993500D9833A /* BARStaticFileServer.m */; };
@@ -58,6 +57,8 @@
 		1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7A172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m */; };
 		1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */; };
+		C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3F297CE17CABA8E00F7AEB5 /* BARRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */; };
 		F524B3B78FCC4D2085BE380A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E44A98267A45BEB8E01B9F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -104,9 +105,7 @@
 		1E3B29AB172F85AE00D9833A /* BARDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BARDemoAppDelegate.m; sourceTree = "<group>"; };
 		1E3B29AE172F85AE00D9833A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1E3B29B1172F85AE00D9833A /* BaristaDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BaristaDemo.xcdatamodel; sourceTree = "<group>"; };
-		1E3B29BF172F86AF00D9833A /* BARDemoServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARDemoServer.h; sourceTree = "<group>"; };
-		1E3B29C0172F86AF00D9833A /* BARDemoServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARDemoServer.m; sourceTree = "<group>"; };
-		1E3B29C2172F88A400D9833A /* JLRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JLRoutes.h; path = ../../Pods/JLRoutes/JLRoutes/JLRoutes.h; sourceTree = "<group>"; };
+		1E3B29C2172F88A400D9833A /* JLRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JLRoutes.h; path = ../../../Pods/JLRoutes/JLRoutes/JLRoutes.h; sourceTree = "<group>"; };
 		1E3B29C5172F993500D9833A /* BARStaticFileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARStaticFileServer.h; sourceTree = "<group>"; };
 		1E3B29C6172F993500D9833A /* BARStaticFileServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARStaticFileServer.m; sourceTree = "<group>"; };
 		1E3B29C9172F9AD400D9833A /* WebApp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebApp; sourceTree = "<group>"; };
@@ -159,6 +158,8 @@
 		1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARTemplateRenderer.h; sourceTree = "<group>"; };
 		1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARTemplateRenderer.m; sourceTree = "<group>"; };
 		52E44A98267A45BEB8E01B9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARRouter.h; sourceTree = "<group>"; };
+		C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARRouter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,8 +202,6 @@
 				1E3B29C9172F9AD400D9833A /* WebApp */,
 				1E3B29AA172F85AE00D9833A /* BARDemoAppDelegate.h */,
 				1E3B29AB172F85AE00D9833A /* BARDemoAppDelegate.m */,
-				1E3B29BF172F86AF00D9833A /* BARDemoServer.h */,
-				1E3B29C0172F86AF00D9833A /* BARDemoServer.m */,
 				1E3B29AD172F85AE00D9833A /* MainMenu.xib */,
 				1E3B29B0172F85AE00D9833A /* BaristaDemo.xcdatamodeld */,
 				1E3B299F172F85AE00D9833A /* Supporting Files */,
@@ -325,6 +324,7 @@
 		1E5DFA4D172DE77800FB6CD1 /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
+				C3F297CA17CABA7B00F7AEB5 /* Router */,
 				1E3B29C4172F990100D9833A /* Files */,
 				1E5DFA71172E4B2B00FB6CD1 /* Body Parsing */,
 				1E5DFA63172E253500FB6CD1 /* Compression */,
@@ -349,7 +349,6 @@
 		1E5DFA5B172DE8F400FB6CD1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1E3B29C2172F88A400D9833A /* JLRoutes.h */,
 				1E5DFA2117275A2300FB6CD1 /* GCDAsyncSocket.h */,
 				1E5DFA2217275A2300FB6CD1 /* GCDAsyncSocket.m */,
 				1E5DFA1D172742D100FB6CD1 /* BARServer.h */,
@@ -419,6 +418,16 @@
 			path = Mustache;
 			sourceTree = "<group>";
 		};
+		C3F297CA17CABA7B00F7AEB5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				1E3B29C2172F88A400D9833A /* JLRoutes.h */,
+				C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */,
+				C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -442,6 +451,7 @@
 				1E5DFA61172DFF4500FB6CD1 /* BARCookieParser.h in Headers */,
 				1E3B29C7172F993500D9833A /* BARStaticFileServer.h in Headers */,
 				1E5DFA7B172F81F300FB6CD1 /* BARMustacheTemplateRenderer.h in Headers */,
+				C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */,
 				1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,7 +627,6 @@
 				1E3B29A5172F85AE00D9833A /* main.m in Sources */,
 				1E3B29AC172F85AE00D9833A /* BARDemoAppDelegate.m in Sources */,
 				1E3B29B2172F85AE00D9833A /* BaristaDemo.xcdatamodeld in Sources */,
-				1E3B29C1172F86AF00D9833A /* BARDemoServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +646,7 @@
 				1E5DFA70172E433B00FB6CD1 /* NSData+BaristaExtensions.m in Sources */,
 				1E5DFA75172E4B4300FB6CD1 /* BARBodyParser.m in Sources */,
 				1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */,
+				C3F297CE17CABA8E00F7AEB5 /* BARRouter.m in Sources */,
 				1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */,
 				1E3B29C8172F993500D9833A /* BARStaticFileServer.m in Sources */,
 			);
