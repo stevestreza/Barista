@@ -40,6 +40,10 @@ Pod::Spec.new do |s|
       files.source_files = 'Barista/Middleware/Files/*.{h,m}'
     end
 
+    middleware.subspec 'Router' do |router|
+      router.source_files = 'Barista/Middleware/Router/*.{h,m}'
+    end
+
     middleware.subspec 'Sessions' do |sessions|
       sessions.source_files = 'Barista/Middleware/Sessions/*.{h,m}'
     end
