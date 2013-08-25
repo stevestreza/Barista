@@ -126,7 +126,7 @@ Wish List
 - Add middleware support for individual routes in the router
 - Automatic resource mapping to Core Data
 - SCSS/SASS/LESS/CoffeeScript/whatever compilation
-- Authorization middleware (Basic auth, Digest auth, OAuth 1.0, OAuth 2, etc.)
+- Authorization middleware (<s>Basic auth</s>, Digest auth, OAuth 1.0, OAuth 2, etc.)
 - Persistent session stores
 - XPC support on Mac
 
