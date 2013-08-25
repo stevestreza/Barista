@@ -7,6 +7,8 @@
 //
 
 #import "BARBasicAuthentication.h"
+#import "BARConnection.h"
+#import "BARResponse.h"
 
 @interface BARBasicAuthentication ()
 /**
@@ -39,56 +41,57 @@
 
 
 #pragma mark - Barista Middleware
-- (void)willSendResponse:(BARResponse *)response forRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler {
 
+- (void)didReceiveRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler {
+	
 	// Presume that we're unauthorized by default
 	BOOL authorized = NO;
 	NSURLCredential *credential = nil;
-
+	
 	// Attempt to parse a credential from the Authorization header
 	credential = [self credentialFromAuthorizationField:request.headerFields[@"Authorization"]];
-
+	
 	// Attempt to parse a credential from the URL
 	if (!credential) {
 		credential = [self credentialFromURL:request.URL];
 	}
-
+	
 	// Ask the authorization block if the credential is valid
 	if (credential && self.authorizationBlock) {
 		authorized = self.authorizationBlock(credential);
 	}
-
+	
 	// If we're still not authorized, challenge the client for credentials
 	if (!authorized) {
 		// Send the authentication challenge
 		NSString *authenticateHeader = [NSString stringWithFormat:@"Basic realm=\"%@\"", self.realm];
+		BARResponse *response = [[BARResponse alloc] init];
 		[response setValue:authenticateHeader forHTTPHeaderField:@"WWW-Authenticate"];
 		response.statusCode = 401;
+		[connection sendResponse:response];
+	} else {
+		handler();
 	}
-
-	// Continue processing the request
-	handler();
 }
-
 
 #pragma mark - Private methods
 - (NSURLCredential *)credentialFromAuthorizationField:(NSString *)fieldValue {
 	NSArray *headerComponents = [fieldValue componentsSeparatedByString:@" "];
-
+	
 	// Make sure this is an HTTP Basic authorization header
 	if (![[headerComponents[0] lowercaseString] isEqualToString:@"basic"]) {
 		return nil;
 	}
-
+	
 	// Base64 decode the authorization value
 	NSString *foo = headerComponents[1];
 	NSData *data = [foo dataUsingEncoding:NSASCIIStringEncoding];
 	NSString *baz = [data barista_base64DecodedString];
-
+	
 	NSArray *authComponents = [baz componentsSeparatedByString:@":"];
 	NSString *username = authComponents[0];
 	NSString *password = authComponents[1];
-
+	
 	// Create and return the credential
 	NSURLCredential *credential = [[NSURLCredential alloc] initWithUser:username password:password persistence:NSURLCredentialPersistenceNone];
 	return credential;
