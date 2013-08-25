@@ -34,6 +34,7 @@
 #import <Barista/BARBodyParser.h>
 #import <Barista/BARMustacheTemplateRenderer.h>
 #import <Barista/BARStaticFileServer.h>
+#import <Barista/BARBasicAuthentication.h>
 
 @interface BARDemoServer : BARServer
 

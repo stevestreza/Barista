@@ -40,6 +40,12 @@
 															   forURLBasePath:@"/public/"]];
 	[self addGlobalMiddleware:[[BARBodyParser alloc] init]];
 	[self addGlobalMiddleware:[BARMustacheTemplateRenderer rendererWithViewsDirectoryURL:[webAppURL URLByAppendingPathComponent:@"views"]]];
+	[self addGlobalMiddleware:[[BARBasicAuthentication alloc] initWithRealm:@"unicorn / rainbows" authorizationBlock:^BOOL(NSURLCredential *credential) {
+		BOOL authorized = YES;
+		authorized &= [credential.user isEqualToString:@"unicorn"];
+		authorized &= [credential.password isEqualToString:@"rainbows"];
+		return authorized;
+	}]];
 	
 	[self addRoute:@"/foo/:bar" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
 		NSLog(@"/foo/:bar parameters: %@", parameters);

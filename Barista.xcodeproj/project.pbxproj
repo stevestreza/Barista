@@ -58,6 +58,10 @@
 		1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7A172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m */; };
 		1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */; };
+		A998249117CAA39200646828 /* BARBasicAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = A998248F17CAA39200646828 /* BARBasicAuthentication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A998249217CAA39200646828 /* BARBasicAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthentication.m */; };
+		A998249517CABAD600646828 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = A998249317CABAD500646828 /* NSData+Base64.h */; };
+		A998249617CABAD600646828 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249417CABAD600646828 /* NSData+Base64.m */; };
 		F524B3B78FCC4D2085BE380A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E44A98267A45BEB8E01B9F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +163,10 @@
 		1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARTemplateRenderer.h; sourceTree = "<group>"; };
 		1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARTemplateRenderer.m; sourceTree = "<group>"; };
 		52E44A98267A45BEB8E01B9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A998248F17CAA39200646828 /* BARBasicAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BARBasicAuthentication.h; path = Authentication/BARBasicAuthentication.h; sourceTree = "<group>"; };
+		A998249017CAA39200646828 /* BARBasicAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BARBasicAuthentication.m; path = Authentication/BARBasicAuthentication.m; sourceTree = "<group>"; };
+		A998249317CABAD500646828 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		A998249417CABAD600646828 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +339,7 @@
 				1E5DFA5E172DFF2900FB6CD1 /* Cookies */,
 				1E5DFA52172DE7BE00FB6CD1 /* Sessions */,
 				1E5DFA76172F818600FB6CD1 /* Templates */,
+				A998249717CABDB100646828 /* Authentication */,
 			);
 			path = Middleware;
 			sourceTree = "<group>";
@@ -385,6 +394,8 @@
 		1E5DFA6C172E432200FB6CD1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				A998249317CABAD500646828 /* NSData+Base64.h */,
+				A998249417CABAD600646828 /* NSData+Base64.m */,
 				1E5DFA6D172E433B00FB6CD1 /* NSData+BaristaExtensions.h */,
 				1E5DFA6E172E433B00FB6CD1 /* NSData+BaristaExtensions.m */,
 			);
@@ -419,6 +430,15 @@
 			path = Mustache;
 			sourceTree = "<group>";
 		};
+		A998249717CABDB100646828 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				A998248F17CAA39200646828 /* BARBasicAuthentication.h */,
+				A998249017CAA39200646828 /* BARBasicAuthentication.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -443,6 +463,8 @@
 				1E3B29C7172F993500D9833A /* BARStaticFileServer.h in Headers */,
 				1E5DFA7B172F81F300FB6CD1 /* BARMustacheTemplateRenderer.h in Headers */,
 				1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */,
+				A998249117CAA39200646828 /* BARBasicAuthentication.h in Headers */,
+				A998249517CABAD600646828 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +661,8 @@
 				1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */,
 				1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */,
 				1E3B29C8172F993500D9833A /* BARStaticFileServer.m in Sources */,
+				A998249217CAA39200646828 /* BARBasicAuthentication.m in Sources */,
+				A998249617CABAD600646828 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
