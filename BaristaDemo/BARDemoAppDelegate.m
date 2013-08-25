@@ -43,6 +43,12 @@
 															   forURLBasePath:@"/public/"]];
 	[server addGlobalMiddleware:[[BARBodyParser alloc] init]];
 	[server addGlobalMiddleware:[BARMustacheTemplateRenderer rendererWithViewsDirectoryURL:[webAppURL URLByAppendingPathComponent:@"views"]]];
+	[server addGlobalMiddleware:[[BARBasicAuthentication alloc] initWithRealm:@"unicorn / rainbows" authorizationBlock:^BOOL(NSURLCredential *credential) {
+		BOOL authorized = YES;
+		authorized &= [credential.user isEqualToString:@"unicorn"];
+		authorized &= [credential.password isEqualToString:@"rainbows"];
+		return authorized;
+	}]];
 	
 	BARRouter *router = [[BARRouter alloc] init];
 	[server addGlobalMiddleware:router];

@@ -34,6 +34,7 @@
 #import <Barista/BARBodyParser.h>
 #import <Barista/BARMustacheTemplateRenderer.h>
 #import <Barista/BARStaticFileServer.h>
+#import <Barista/BARBasicAuthentication.h>
 #import <Barista/BARRouter.h>
 
 @interface BARDemoAppDelegate : NSObject <NSApplicationDelegate>
