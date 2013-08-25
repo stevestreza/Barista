@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
 #import "BARRequest.h"
+#import "BARResponse.h"
 
 @class BARServer;
 
@@ -16,5 +17,7 @@
 
 @property (nonatomic, weak)   BARServer *server;
 @property (nonatomic, strong) BARRequest *request;
+
+-(void)sendResponse:(BARResponse *)response;
 
 @end

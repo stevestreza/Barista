@@ -15,10 +15,19 @@
 @property (nonatomic, readonly, copy) NSString *HTTPMethod;
 @property (nonatomic, readonly, copy) NSURL *URL;
 @property (nonatomic, readonly, copy) NSDictionary *headerFields;
-@property (nonatomic, readonly, copy) NSData *body;
+@property (nonatomic, readonly, copy) NSData *bodyData;
 
 -(NSString *)valueForHeaderField:(NSString *)headerField;
 
 -(NSString *)userAgent;
+
+@end
+
+#pragma mark Extensions
+
+@interface BARRequest (BARExtensionSupport)
+
+-(id)customValueForKey:(NSString *)key;
+-(void)setCustomValue:(id)value forKey:(NSString *)key;
 
 @end

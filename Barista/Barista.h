@@ -8,4 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaristaTypes.h"
+
 #import "BARServer.h"
+#import "BARConnection.h"
+#import "BARRequest.h"
+#import "BARResponse.h"

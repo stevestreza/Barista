@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7031772E-9154-4D50-9D96-565CEF1E37A2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Barista</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7DED93BF-EF9B-4953-BD57-A5BA5DE4953D</key>
+		<string>git://github.com/joeldev/JLRoutes.git</string>
+		<key>FBBC8262-E92D-4CD6-A760-BA792F78D154</key>
+		<string>ssh://bitbucket.org/stevestreza/barista.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Barista.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7DED93BF-EF9B-4953-BD57-A5BA5DE4953D</key>
+		<string>../Pods/JLRoutes</string>
+		<key>FBBC8262-E92D-4CD6-A760-BA792F78D154</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/stevestreza/barista.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FBBC8262-E92D-4CD6-A760-BA792F78D154</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FBBC8262-E92D-4CD6-A760-BA792F78D154</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Barista</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7DED93BF-EF9B-4953-BD57-A5BA5DE4953D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JLRoutes</string>
+		</dict>
+	</array>
+</dict>
+</plist>

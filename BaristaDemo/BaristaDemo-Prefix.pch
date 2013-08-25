@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'BaristaDemo' target in the 'BaristaDemo' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif

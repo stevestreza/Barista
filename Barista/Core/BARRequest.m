@@ -10,6 +10,7 @@
 
 @implementation BARRequest {
 	CFHTTPMessageRef message;
+	NSMutableDictionary *_customValues;
 }
 
 +(NSData *)CRLFData{
@@ -35,6 +36,9 @@
 }
 
 -(instancetype)initFromData:(NSData *)data{
+	NSString *textData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(@"Received request\n-\n%@\n-", textData);
+	
 	NSData *crlf = [[self class] CRLFData];
 	NSData *crlfcrlf = [[self class] CRLFCRLFData];
 	NSInteger locationOfFirstNewline = [data rangeOfData:crlf     options:0 range:NSMakeRange(0, data.length)].location;
@@ -96,7 +100,7 @@ fail:
 	return (__bridge NSDictionary *)CFHTTPMessageCopyAllHeaderFields(message);
 }
 
--(NSData *)body{
+-(NSData *)bodyData{
 	return (__bridge NSData *)CFHTTPMessageCopyBody(message);
 }
 
@@ -108,6 +112,26 @@ fail:
 
 -(NSString *)userAgent{
 	return [self valueForHeaderField:@"User-Agent"];
+}
+
+@end
+
+@implementation BARRequest (BARExtensionSupport)
+
+-(id)customValueForKey:(NSString *)key{
+	return _customValues[key];
+}
+
+-(void)setCustomValue:(id)value forKey:(NSString *)key{
+	if(!_customValues){
+		_customValues = [NSMutableDictionary dictionary];
+	}
+	
+	if(value){
+		_customValues[key] = value;
+	}else{
+		[_customValues removeObjectForKey:key];
+	}
 }
 
 @end

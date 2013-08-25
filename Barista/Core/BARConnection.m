@@ -7,6 +7,7 @@
 //
 
 #import "BARConnection.h"
+#import "BARServer.h"
 
 @implementation BARConnection {
 	GCDAsyncSocket *_socket;
@@ -34,6 +35,18 @@
 	[_socket readDataWithTimeout:10 tag:1];
 }
 
+#pragma mark Response
+
+-(void)sendResponse:(BARResponse *)response{
+	[self.server connection:self willSendResponse:response forRequest:self.request handler:^{
+		CFHTTPMessageRef message = response.message;
+		NSData *data = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(message);
+//		NSString *contents = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//		NSLog(@"Sending response:\n%@",contents);
+		[_socket writeData:data withTimeout:5 tag:0];
+	}];
+}
+
 #pragma mark GCDAsyncSocketDelegate
 
 /**
@@ -42,8 +55,9 @@
  **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
 	_request = [BARRequest requestFromData:data];
-	NSLog(@"Request: %@", _request);
-	NSLog(@"-- parts:\n%@\n%@\n%@\n%@\n%@", _request.HTTPMethod, _request.URL, [_request userAgent], _request.body, _request.headerFields);
+//	NSLog(@"Request: %@", _request);
+//	NSLog(@"-- parts:\n%@\n%@\n%@\n%@\n%@", _request.HTTPMethod, _request.URL, [_request userAgent], _request.bodyData, _request.headerFields);
+	[self.server connection:self didReceiveRequest:_request];
 }
 
 /**
