@@ -42,12 +42,6 @@
 -(BOOL)startListening;
 -(BOOL)stopListening;
 
-#pragma mark Routes
-
--(void)setupRoutes;
-
--(void)addRoute:(NSString *)route forHTTPMethod:(NSString *)method handler:(BOOL (^)(BARConnection *connection, BARRequest *request, NSDictionary *parameters))handler;
-
 #pragma mark Middleware
 
 -(void)addGlobalMiddleware:(id<BaristaMiddleware>)middleware;
