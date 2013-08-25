@@ -8,6 +8,8 @@ Status
 
 Barista is currently early in development. It probably should not be used in an app you're shipping to end users just yet. But it is likely more than adequate for internal tools or building development tools.
 
+The API is not stable, and could or will break for any reason.
+
 Usage
 =====
 
@@ -121,6 +123,8 @@ Wish List
 
 - Better error handling
 - Unit tests
+- Change the router to a generic piece of middleware
+- Add middleware support for individual routes in the router
 - Automatic resource mapping to Core Data
 - SCSS/SASS/LESS/CoffeeScript/whatever compilation
 - Authorization middleware (Basic auth, Digest auth, OAuth 1.0, OAuth 2, etc.)
