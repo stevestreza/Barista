@@ -68,7 +68,10 @@
 			response.statusCode = 304;
 		}else{
 			response.statusCode = 200;
-			[response setValue:[[self class] mimeTypeForPathExtension:[fileURL pathExtension]] forHTTPHeaderField:@"Content-Type"];
+			NSString *mimeType = [[self class] mimeTypeForPathExtension:[fileURL pathExtension]];
+			if(mimeType){
+				[response setValue:mimeType forHTTPHeaderField:@"Content-Type"];
+			}
 			[response setValue:etag forHTTPHeaderField:@"ETag"];
 			response.responseData = [[[NSFileManager alloc] init] contentsAtPath:fileURL.path];
 		}
