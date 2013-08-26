@@ -169,11 +169,11 @@
 }
 
 -(void)processMiddlewareForResponse:(BARResponse *)response withRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
+	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareReverseEnumerator"];
 	if(!middlewareEnumerator){
 		NSArray *middlewareArray = [self globalMiddleware];
 		middlewareEnumerator = [middlewareArray reverseObjectEnumerator];
-		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareEnumerator"];
+		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareReverseEnumerator"];
 	}
 	
 	id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
