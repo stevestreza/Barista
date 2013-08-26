@@ -22,6 +22,29 @@
 		1E3B29CA172F9AD400D9833A /* WebApp in Resources */ = {isa = PBXBuildFile; fileRef = 1E3B29C9172F9AD400D9833A /* WebApp */; };
 		1E55B96E17CAD38E00A079F4 /* BARAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E55B96C17CAD38E00A079F4 /* BARAuthenticator.h */; };
 		1E55B96F17CAD38E00A079F4 /* BARAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */; };
+		1E55B97517CADE9D00A079F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E55B90217CA882100A079F4 /* Foundation.framework */; };
+		1E55B97817CADE9D00A079F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E55B97717CADE9D00A079F4 /* main.m */; };
+		1E55B97C17CADE9D00A079F4 /* BaristaCLIServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E55B97B17CADE9D00A079F4 /* BaristaCLIServer.1 */; };
+		1E55B98017CADECA00A079F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DFA2517275A4900FB6CD1 /* Security.framework */; };
+		1E55B98117CADED000A079F4 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DFA6A172E416200FB6CD1 /* libz.1.dylib */; };
+		1E55B98217CADEEC00A079F4 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249417CABAD600646828 /* NSData+Base64.m */; };
+		1E55B98317CADEEC00A079F4 /* NSData+BaristaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA6E172E433B00FB6CD1 /* NSData+BaristaExtensions.m */; };
+		1E55B98417CADEEC00A079F4 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA2217275A2300FB6CD1 /* GCDAsyncSocket.m */; };
+		1E55B98517CADEEC00A079F4 /* BARServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA1E172742D100FB6CD1 /* BARServer.m */; };
+		1E55B98617CADEEC00A079F4 /* BARConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA2B1727ACC600FB6CD1 /* BARConnection.m */; };
+		1E55B98717CADEEC00A079F4 /* BARRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA2F1727D09000FB6CD1 /* BARRequest.m */; };
+		1E55B98817CADEEC00A079F4 /* BARResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA481727DF5300FB6CD1 /* BARResponse.m */; };
+		1E55B98917CADEEC00A079F4 /* BARRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */; };
+		1E55B98A17CADEEC00A079F4 /* BARStaticFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B29C6172F993500D9833A /* BARStaticFileServer.m */; };
+		1E55B98B17CADEEC00A079F4 /* BARBodyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA73172E4B4300FB6CD1 /* BARBodyParser.m */; };
+		1E55B98C17CADEEC00A079F4 /* BARCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA65172E275800FB6CD1 /* BARCompressor.m */; };
+		1E55B98D17CADEEC00A079F4 /* BARCookieParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA60172DFF4500FB6CD1 /* BARCookieParser.m */; };
+		1E55B98E17CADEEC00A079F4 /* BARSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA54172DE81700FB6CD1 /* BARSession.m */; };
+		1E55B98F17CADEEC00A079F4 /* BARSessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA58172DE8C800FB6CD1 /* BARSessionStore.m */; };
+		1E55B99117CADEEC00A079F4 /* BARTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */; };
+		1E55B99217CADEEC00A079F4 /* BARBasicAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthenticator.m */; };
+		1E55B99317CADEEC00A079F4 /* BARAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */; };
+		1E55B99617CADF9900A079F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E44A98267A45BEB8E01B9F /* libPods.a */; };
 		1E5DF9E31727424D00FB6CD1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9E21727424D00FB6CD1 /* Cocoa.framework */; };
 		1E5DF9ED1727424D00FB6CD1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E5DF9EB1727424D00FB6CD1 /* InfoPlist.strings */; };
 		1E5DF9F91727424D00FB6CD1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9F81727424D00FB6CD1 /* SenTestingKit.framework */; };
@@ -97,6 +120,16 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1E55B97217CADE9D00A079F4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				1E55B97C17CADE9D00A079F4 /* BaristaCLIServer.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +154,10 @@
 		1E55B91B17CA882100A079F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1E55B96C17CAD38E00A079F4 /* BARAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARAuthenticator.h; sourceTree = "<group>"; };
 		1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARAuthenticator.m; sourceTree = "<group>"; };
+		1E55B97417CADE9D00A079F4 /* BaristaCLIServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BaristaCLIServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E55B97717CADE9D00A079F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1E55B97A17CADE9D00A079F4 /* BaristaCLIServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BaristaCLIServer-Prefix.pch"; sourceTree = "<group>"; };
+		1E55B97B17CADE9D00A079F4 /* BaristaCLIServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = BaristaCLIServer.1; sourceTree = "<group>"; };
 		1E5DF9DF1727424D00FB6CD1 /* Barista.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Barista.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5DF9E21727424D00FB6CD1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1E5DF9E51727424D00FB6CD1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -181,6 +218,17 @@
 			files = (
 				1E3B29B8172F85E600D9833A /* Barista.framework in Frameworks */,
 				1E3B299D172F85AE00D9833A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E55B97117CADE9D00A079F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E55B99617CADF9900A079F4 /* libPods.a in Frameworks */,
+				1E55B98117CADED000A079F4 /* libz.1.dylib in Frameworks */,
+				1E55B98017CADECA00A079F4 /* Security.framework in Frameworks */,
+				1E55B97517CADE9D00A079F4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,12 +300,31 @@
 			path = Basic;
 			sourceTree = "<group>";
 		};
+		1E55B97617CADE9D00A079F4 /* BaristaCLIServer */ = {
+			isa = PBXGroup;
+			children = (
+				1E55B97717CADE9D00A079F4 /* main.m */,
+				1E55B97B17CADE9D00A079F4 /* BaristaCLIServer.1 */,
+				1E55B97917CADE9D00A079F4 /* Supporting Files */,
+			);
+			path = BaristaCLIServer;
+			sourceTree = "<group>";
+		};
+		1E55B97917CADE9D00A079F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E55B97A17CADE9D00A079F4 /* BaristaCLIServer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		1E5DF9D51727424D00FB6CD1 = {
 			isa = PBXGroup;
 			children = (
 				1E5DF9E81727424D00FB6CD1 /* Barista */,
 				1E5DF9FE1727424D00FB6CD1 /* BaristaTests */,
 				1E3B299E172F85AE00D9833A /* BaristaDemo */,
+				1E55B97617CADE9D00A079F4 /* BaristaCLIServer */,
 				1E5DF9E11727424D00FB6CD1 /* Frameworks */,
 				1E5DF9E01727424D00FB6CD1 /* Products */,
 				0497751BEAFA4E36AB0305E2 /* Pods.xcconfig */,
@@ -270,6 +337,7 @@
 				1E5DF9DF1727424D00FB6CD1 /* Barista.framework */,
 				1E5DF9F71727424D00FB6CD1 /* BaristaTests.octest */,
 				1E3B299C172F85AE00D9833A /* BaristaDemo.app */,
+				1E55B97417CADE9D00A079F4 /* BaristaCLIServer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -516,6 +584,23 @@
 			productReference = 1E3B299C172F85AE00D9833A /* BaristaDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1E55B97317CADE9D00A079F4 /* BaristaCLIServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E55B97D17CADE9D00A079F4 /* Build configuration list for PBXNativeTarget "BaristaCLIServer" */;
+			buildPhases = (
+				1E55B97017CADE9D00A079F4 /* Sources */,
+				1E55B97117CADE9D00A079F4 /* Frameworks */,
+				1E55B97217CADE9D00A079F4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BaristaCLIServer;
+			productName = BaristaCLIServer;
+			productReference = 1E55B97417CADE9D00A079F4 /* BaristaCLIServer */;
+			productType = "com.apple.product-type.tool";
+		};
 		1E5DF9DE1727424D00FB6CD1 /* Barista */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E5DFA091727424D00FB6CD1 /* Build configuration list for PBXNativeTarget "Barista" */;
@@ -579,6 +664,7 @@
 				1E5DF9DE1727424D00FB6CD1 /* Barista */,
 				1E5DF9F61727424D00FB6CD1 /* BaristaTests */,
 				1E3B299B172F85AE00D9833A /* BaristaDemo */,
+				1E55B97317CADE9D00A079F4 /* BaristaCLIServer */,
 			);
 		};
 /* End PBXProject section */
@@ -665,6 +751,31 @@
 				1E3B29A5172F85AE00D9833A /* main.m in Sources */,
 				1E3B29AC172F85AE00D9833A /* BARDemoAppDelegate.m in Sources */,
 				1E3B29B2172F85AE00D9833A /* BaristaDemo.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E55B97017CADE9D00A079F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E55B98217CADEEC00A079F4 /* NSData+Base64.m in Sources */,
+				1E55B98317CADEEC00A079F4 /* NSData+BaristaExtensions.m in Sources */,
+				1E55B98417CADEEC00A079F4 /* GCDAsyncSocket.m in Sources */,
+				1E55B98517CADEEC00A079F4 /* BARServer.m in Sources */,
+				1E55B98617CADEEC00A079F4 /* BARConnection.m in Sources */,
+				1E55B98717CADEEC00A079F4 /* BARRequest.m in Sources */,
+				1E55B98817CADEEC00A079F4 /* BARResponse.m in Sources */,
+				1E55B98917CADEEC00A079F4 /* BARRouter.m in Sources */,
+				1E55B98A17CADEEC00A079F4 /* BARStaticFileServer.m in Sources */,
+				1E55B98B17CADEEC00A079F4 /* BARBodyParser.m in Sources */,
+				1E55B98C17CADEEC00A079F4 /* BARCompressor.m in Sources */,
+				1E55B98D17CADEEC00A079F4 /* BARCookieParser.m in Sources */,
+				1E55B98E17CADEEC00A079F4 /* BARSession.m in Sources */,
+				1E55B98F17CADEEC00A079F4 /* BARSessionStore.m in Sources */,
+				1E55B99117CADEEC00A079F4 /* BARTemplateRenderer.m in Sources */,
+				1E55B99217CADEEC00A079F4 /* BARBasicAuthenticator.m in Sources */,
+				1E55B99317CADEEC00A079F4 /* BARAuthenticator.m in Sources */,
+				1E55B97817CADE9D00A079F4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +892,45 @@
 				INFOPLIST_FILE = "BaristaDemo/BaristaDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1E55B97E17CADE9D00A079F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0497751BEAFA4E36AB0305E2 /* Pods.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BaristaCLIServer/BaristaCLIServer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1E55B97F17CADE9D00A079F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0497751BEAFA4E36AB0305E2 /* Pods.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BaristaCLIServer/BaristaCLIServer-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -912,6 +1062,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1E55B97D17CADE9D00A079F4 /* Build configuration list for PBXNativeTarget "BaristaCLIServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E55B97E17CADE9D00A079F4 /* Debug */,
+				1E55B97F17CADE9D00A079F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		1E5DF9D91727424D00FB6CD1 /* Build configuration list for PBXProject "Barista" */ = {
 			isa = XCConfigurationList;
