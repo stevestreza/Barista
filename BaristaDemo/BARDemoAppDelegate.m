@@ -66,7 +66,7 @@
 		if(!bar){
 			bar = @"";
 		}
-    	
+		
 		BARResponse *response = [[BARResponse alloc] init];
 		response.statusCode = 200;
 		[response setViewToRender:@"test" withObject:@{@"foo": @"abc", @"bar": bar}];
