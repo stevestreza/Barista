@@ -29,7 +29,13 @@
 
 @interface BARSessionStore : NSObject <BaristaMiddleware>
 
+/// Defaults to a session store at ~/Library/Application Support/<App Name/Identifier>/Sessions.
 +(instancetype)sessionStoreWithCookieBaseName:(NSString *)cookieBaseName;
+
+/// Passing in `nil` for `storeLocation` means the session store will be in-memory only.
++(instancetype)sessionStoreWithCookieBaseName:(NSString *)cookieBaseName storeLocation:(NSURL *)storeLocation;
+
+-(instancetype)initWithStoreLocation:(NSURL *)storeLocation;
 
 @property (nonatomic, strong) NSString *cookieBaseName;
 
