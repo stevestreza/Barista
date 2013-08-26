@@ -95,12 +95,12 @@
 	
  	if (deflateInit(&strm, Z_DEFAULT_COMPRESSION) != Z_OK) return nil;
 	
- 	NSMutableData *compressed = [NSMutableData dataWithLength:16384];  // 16K chuncks for expansion
+ 	NSMutableData *compressed = [NSMutableData dataWithLength:16 * 1024];  // 16K chuncks for expansion
 	
  	do {
 		
  		if (strm.total_out >= [compressed length])
- 			[compressed increaseLengthBy: 16384];
+ 			[compressed increaseLengthBy:16 * 1024];
  		
  		strm.next_out = [compressed mutableBytes] + strm.total_out;
  		strm.avail_out = [compressed length] - strm.total_out;
@@ -179,12 +179,12 @@
  	
  	if (deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15+16), 8, Z_DEFAULT_STRATEGY) != Z_OK) return nil;
  	
- 	NSMutableData *compressed = [NSMutableData dataWithLength:16384];  // 16K chunks for expansion
+ 	NSMutableData *compressed = [NSMutableData dataWithLength:16 * 1024];  // 16K chunks for expansion
  	
  	do {
  		
  		if (strm.total_out >= [compressed length])
- 			[compressed increaseLengthBy: 16384];
+ 			[compressed increaseLengthBy:16 * 1024];
  		
  		strm.next_out = [compressed mutableBytes] + strm.total_out;
  		strm.avail_out = (unsigned int)([compressed length] - strm.total_out);
