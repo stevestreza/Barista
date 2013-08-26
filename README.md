@@ -127,7 +127,6 @@ Wish List
 - Automatic resource mapping to Core Data
 - SCSS/SASS/LESS/TypeScript/whatever compilation
 - Authorization middleware (<s>Basic auth</s>, Digest auth, OAuth 1.0, OAuth 2, etc.)
-- Persistent session stores
 - XPC support on Mac
 
 If you wish to contribute middleware or other changes, please submit a pull request. If you are adding new middleware, add an subspec entry to the podspec in the appropriate place. And add your name to the contributors list below, along with adding acknowledgements for open source code.
