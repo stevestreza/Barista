@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Steve Streza. All rights reserved.
 //
 
-#import "BARBasicAuthentication.h"
+#import "BARBasicAuthenticator.h"
 #import "BARConnection.h"
 #import "BARResponse.h"
 
-@interface BARBasicAuthentication ()
+@interface BARBasicAuthenticator ()
 /**
  Generates and returns an NSURLCredential for basic authentication from the value of an HTTP Authorization field.
  @param fieldValue The value of an HTTP Authorization field.
@@ -28,13 +28,13 @@
 @end
 
 
-@implementation BARBasicAuthentication
+@implementation BARBasicAuthenticator
 
-- (instancetype)initWithRealm:(NSString *)realm authorizationBlock:(BARBasicAuthenticationBlock)authorizationBlock {
+- (instancetype)initWithRealm:(NSString *)realm authorizationHandler:(BARAuthenticatorAuthorizationHandler)authorizationHandler{
 	self = [super init];
 	if (self) {
 		self.realm = realm;
-		self.authorizationBlock = authorizationBlock;
+		self.authorizationHandler = authorizationHandler;
 	}
 	return self;
 }
@@ -42,10 +42,7 @@
 
 #pragma mark - Barista Middleware
 
-- (void)didReceiveRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler {
-	
-	// Presume that we're unauthorized by default
-	BOOL authorized = NO;
+- (id)credentialForRequest:(BARRequest *)request {
 	NSURLCredential *credential = nil;
 	
 	// Attempt to parse a credential from the Authorization header
@@ -56,22 +53,14 @@
 		credential = [self credentialFromURL:request.URL];
 	}
 	
-	// Ask the authorization block if the credential is valid
-	if (credential && self.authorizationBlock) {
-		authorized = self.authorizationBlock(credential);
-	}
-	
-	// If we're still not authorized, challenge the client for credentials
-	if (!authorized) {
-		// Send the authentication challenge
-		NSString *authenticateHeader = [NSString stringWithFormat:@"Basic realm=\"%@\"", self.realm];
-		BARResponse *response = [[BARResponse alloc] init];
-		[response setValue:authenticateHeader forHTTPHeaderField:@"WWW-Authenticate"];
-		response.statusCode = 401;
-		[connection sendResponse:response];
-	} else {
-		handler();
-	}
+	return credential;
+}
+
+- (BARResponse *)failureResponseForRequest:(BARRequest *)request withCredential:(id)credential {
+	BARResponse *response = [super failureResponseForRequest:request withCredential:credential];
+	NSString *authenticateHeader = [NSString stringWithFormat:@"Basic realm=\"%@\"", self.realm];
+	[response setValue:authenticateHeader forHTTPHeaderField:@"WWW-Authenticate"];
+	return response;
 }
 
 #pragma mark - Private methods

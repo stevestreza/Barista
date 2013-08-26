@@ -20,6 +20,8 @@
 		1E3B29C7172F993500D9833A /* BARStaticFileServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E3B29C5172F993500D9833A /* BARStaticFileServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E3B29C8172F993500D9833A /* BARStaticFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B29C6172F993500D9833A /* BARStaticFileServer.m */; };
 		1E3B29CA172F9AD400D9833A /* WebApp in Resources */ = {isa = PBXBuildFile; fileRef = 1E3B29C9172F9AD400D9833A /* WebApp */; };
+		1E55B96E17CAD38E00A079F4 /* BARAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E55B96C17CAD38E00A079F4 /* BARAuthenticator.h */; };
+		1E55B96F17CAD38E00A079F4 /* BARAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */; };
 		1E5DF9E31727424D00FB6CD1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9E21727424D00FB6CD1 /* Cocoa.framework */; };
 		1E5DF9ED1727424D00FB6CD1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E5DF9EB1727424D00FB6CD1 /* InfoPlist.strings */; };
 		1E5DF9F91727424D00FB6CD1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DF9F81727424D00FB6CD1 /* SenTestingKit.framework */; };
@@ -57,8 +59,8 @@
 		1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7A172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m */; };
 		1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */; };
-		A998249117CAA39200646828 /* BARBasicAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = A998248F17CAA39200646828 /* BARBasicAuthentication.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A998249217CAA39200646828 /* BARBasicAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthentication.m */; };
+		A998249117CAA39200646828 /* BARBasicAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = A998248F17CAA39200646828 /* BARBasicAuthenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A998249217CAA39200646828 /* BARBasicAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthenticator.m */; };
 		A998249517CABAD600646828 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = A998249317CABAD500646828 /* NSData+Base64.h */; };
 		A998249617CABAD600646828 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249417CABAD600646828 /* NSData+Base64.m */; };
 		C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -117,6 +119,8 @@
 		1E55B90417CA882100A079F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1E55B90617CA882100A079F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1E55B91B17CA882100A079F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1E55B96C17CAD38E00A079F4 /* BARAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARAuthenticator.h; sourceTree = "<group>"; };
+		1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARAuthenticator.m; sourceTree = "<group>"; };
 		1E5DF9DF1727424D00FB6CD1 /* Barista.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Barista.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5DF9E21727424D00FB6CD1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1E5DF9E51727424D00FB6CD1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -162,8 +166,8 @@
 		1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARTemplateRenderer.h; sourceTree = "<group>"; };
 		1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARTemplateRenderer.m; sourceTree = "<group>"; };
 		52E44A98267A45BEB8E01B9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A998248F17CAA39200646828 /* BARBasicAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARBasicAuthentication.h; sourceTree = "<group>"; };
-		A998249017CAA39200646828 /* BARBasicAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARBasicAuthentication.m; sourceTree = "<group>"; };
+		A998248F17CAA39200646828 /* BARBasicAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARBasicAuthenticator.h; sourceTree = "<group>"; };
+		A998249017CAA39200646828 /* BARBasicAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARBasicAuthenticator.m; sourceTree = "<group>"; };
 		A998249317CABAD500646828 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		A998249417CABAD600646828 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARRouter.h; sourceTree = "<group>"; };
@@ -241,8 +245,8 @@
 		1E55B96B17CAC38B00A079F4 /* Basic Auth */ = {
 			isa = PBXGroup;
 			children = (
-				A998248F17CAA39200646828 /* BARBasicAuthentication.h */,
-				A998249017CAA39200646828 /* BARBasicAuthentication.m */,
+				A998248F17CAA39200646828 /* BARBasicAuthenticator.h */,
+				A998249017CAA39200646828 /* BARBasicAuthenticator.m */,
 			);
 			name = "Basic Auth";
 			path = Basic;
@@ -443,6 +447,8 @@
 			isa = PBXGroup;
 			children = (
 				1E55B96B17CAC38B00A079F4 /* Basic Auth */,
+				1E55B96C17CAD38E00A079F4 /* BARAuthenticator.h */,
+				1E55B96D17CAD38E00A079F4 /* BARAuthenticator.m */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				1E5DFA74172E4B4300FB6CD1 /* BARBodyParser.h in Headers */,
 				1E5DFA66172E275800FB6CD1 /* BARCompressor.h in Headers */,
 				1E5DFA301727D09000FB6CD1 /* BARRequest.h in Headers */,
+				1E55B96E17CAD38E00A079F4 /* BARAuthenticator.h in Headers */,
 				1E5DFA55172DE81700FB6CD1 /* BARSession.h in Headers */,
 				1E5DFA59172DE8C800FB6CD1 /* BARSessionStore.h in Headers */,
 				1E5DFA61172DFF4500FB6CD1 /* BARCookieParser.h in Headers */,
@@ -482,7 +489,7 @@
 				1E5DFA7B172F81F300FB6CD1 /* BARMustacheTemplateRenderer.h in Headers */,
 				C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */,
 				1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */,
-				A998249117CAA39200646828 /* BARBasicAuthentication.h in Headers */,
+				A998249117CAA39200646828 /* BARBasicAuthenticator.h in Headers */,
 				A998249517CABAD600646828 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -674,13 +681,14 @@
 				1E5DFA5A172DE8C800FB6CD1 /* BARSessionStore.m in Sources */,
 				1E5DFA62172DFF4500FB6CD1 /* BARCookieParser.m in Sources */,
 				1E5DFA67172E275800FB6CD1 /* BARCompressor.m in Sources */,
+				1E55B96F17CAD38E00A079F4 /* BARAuthenticator.m in Sources */,
 				1E5DFA70172E433B00FB6CD1 /* NSData+BaristaExtensions.m in Sources */,
 				1E5DFA75172E4B4300FB6CD1 /* BARBodyParser.m in Sources */,
 				1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */,
 				C3F297CE17CABA8E00F7AEB5 /* BARRouter.m in Sources */,
 				1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */,
 				1E3B29C8172F993500D9833A /* BARStaticFileServer.m in Sources */,
-				A998249217CAA39200646828 /* BARBasicAuthentication.m in Sources */,
+				A998249217CAA39200646828 /* BARBasicAuthenticator.m in Sources */,
 				A998249617CABAD600646828 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
