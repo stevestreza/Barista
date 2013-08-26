@@ -77,6 +77,20 @@
 	return _customData[key];
 }
 
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        _identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"identifier"];
+        _customData = [[aDecoder decodeObjectOfClass:[NSDictionary class] forKey:@"customData"] mutableCopy];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_identifier forKey:@"identifier"];
+    [aCoder encodeObject:_customData forKey:@"customData"];
+}
 @end
 
 @implementation BARRequest (BARSessionSupport)
