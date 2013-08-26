@@ -37,7 +37,7 @@
 	NSURL *webAppURL = [[NSBundle mainBundle] URLForResource:@"WebApp" withExtension:@""];
 	
 	[server addGlobalMiddleware:[BARCookieParser cookieParser]];
-	[server addGlobalMiddleware:[BARSessionStore sessionStoreWithCookieBaseName:@"_streamers"]];
+	[server addGlobalMiddleware:[BARSessionStore sessionStoreWithCookieBaseName:@"barista_demo_app"]];
 	[server addGlobalMiddleware:[BARCompressor compressor]];
 	[server addGlobalMiddleware:[BARStaticFileServer fileServerWithDirectoryURL:[webAppURL  URLByAppendingPathComponent:@"public"]
 															   forURLBasePath:@"/public/"]];

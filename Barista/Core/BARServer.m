@@ -112,7 +112,6 @@
 #pragma mark Sockets
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket{
-	NSLog(@"Socket");
 	if(!_connections){
 		_connections = [NSMutableArray array];
 	}
@@ -146,11 +145,11 @@
 }
 
 -(void)processMiddlewareForRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"STRAppServerMiddlewareEnumerator"];
+	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
 	if(!middlewareEnumerator){
 		NSArray *middlewareArray = [self globalMiddleware];
 		middlewareEnumerator = [middlewareArray objectEnumerator];
-		[request setCustomValue:middlewareEnumerator forKey:@"STRAppServerMiddlewareEnumerator"];
+		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareEnumerator"];
 	}
 	
 	id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
@@ -170,11 +169,11 @@
 }
 
 -(void)processMiddlewareForResponse:(BARResponse *)response withRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"STRAppServerMiddlewareReverseEnumerator"];
+	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
 	if(!middlewareEnumerator){
 		NSArray *middlewareArray = [self globalMiddleware];
 		middlewareEnumerator = [middlewareArray reverseObjectEnumerator];
-		[request setCustomValue:middlewareEnumerator forKey:@"STRAppServerMiddlewareReverseEnumerator"];
+		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareEnumerator"];
 	}
 	
 	id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
