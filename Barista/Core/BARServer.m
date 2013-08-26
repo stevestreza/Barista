@@ -55,6 +55,13 @@
 	if(self = [super init]){
 		_boundHost = boundHost;
 		_port = port;
+		
+		_unhandledRequestHandler = [^(BARRequest *request, BARConnection *connection){
+			BARResponse *response = [[BARResponse alloc] init];
+			response.statusCode = 404;
+			response.responseData = [[NSString stringWithFormat:@"Could not %@ %@", request.HTTPMethod, request.URL.path] dataUsingEncoding:NSUTF8StringEncoding];
+			[connection sendResponse:response];
+		} copy];
 	}
 	return self;
 }
@@ -164,6 +171,8 @@
 	}else{
 		if(handler){
 			handler();
+		}else if(!connection.didSendResponse && self.unhandledRequestHandler){
+			self.unhandledRequestHandler(request, connection);
 		}
 	}
 }

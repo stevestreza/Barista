@@ -56,6 +56,9 @@
 #pragma mark Response
 
 -(void)sendResponse:(BARResponse *)response{
+	if(self.didSendResponse) return;
+	self.didSendResponse = YES;
+	
 	[self.server connection:self willSendResponse:response forRequest:self.request handler:^{
 		CFHTTPMessageRef message = response.message;
 		NSData *data = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(message);

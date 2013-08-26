@@ -39,6 +39,8 @@
 @property (nonatomic, readonly, assign) uint16_t port;
 @property (nonatomic, assign, getter=isListening) BOOL listening;
 
+@property (nonatomic, copy) void (^unhandledRequestHandler)(BARRequest *request, BARConnection *connection);
+
 -(BOOL)startListening;
 -(BOOL)stopListening;
 

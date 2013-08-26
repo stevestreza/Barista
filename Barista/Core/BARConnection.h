@@ -35,6 +35,7 @@
 
 @property (nonatomic, weak)   BARServer *server;
 @property (nonatomic, strong) BARRequest *request;
+@property (nonatomic, assign) BOOL didSendResponse;
 
 -(void)sendResponse:(BARResponse *)response;
 
