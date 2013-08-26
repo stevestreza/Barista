@@ -82,6 +82,9 @@
 		1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7A172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m */; };
 		1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */; };
+		1E70CCA717CAF9520066FC70 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E70CCA617CAF9520066FC70 /* CoreFoundation.framework */; };
+		1E70CCA917CAF96B0066FC70 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E70CCA817CAF96B0066FC70 /* CFNetwork.framework */; };
+		1E70CCAB17CAF9710066FC70 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E70CCAA17CAF9710066FC70 /* CoreServices.framework */; };
 		A998249117CAA39200646828 /* BARBasicAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = A998248F17CAA39200646828 /* BARBasicAuthenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A998249217CAA39200646828 /* BARBasicAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthenticator.m */; };
 		A998249517CABAD600646828 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = A998249317CABAD500646828 /* NSData+Base64.h */; };
@@ -202,6 +205,9 @@
 		1E5DFA7A172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARMustacheTemplateRenderer.m; sourceTree = "<group>"; };
 		1E5DFA7D172F82EA00FB6CD1 /* BARTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARTemplateRenderer.h; sourceTree = "<group>"; };
 		1E5DFA7E172F82EA00FB6CD1 /* BARTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARTemplateRenderer.m; sourceTree = "<group>"; };
+		1E70CCA617CAF9520066FC70 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1E70CCA817CAF96B0066FC70 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1E70CCAA17CAF9710066FC70 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		52E44A98267A45BEB8E01B9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A998248F17CAA39200646828 /* BARBasicAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARBasicAuthenticator.h; sourceTree = "<group>"; };
 		A998249017CAA39200646828 /* BARBasicAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARBasicAuthenticator.m; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E70CCAB17CAF9710066FC70 /* CoreServices.framework in Frameworks */,
+				1E70CCA917CAF96B0066FC70 /* CFNetwork.framework in Frameworks */,
+				1E70CCA717CAF9520066FC70 /* CoreFoundation.framework in Frameworks */,
 				1E55B99617CADF9900A079F4 /* libPods.a in Frameworks */,
 				1E55B98117CADED000A079F4 /* libz.1.dylib in Frameworks */,
 				1E55B98017CADECA00A079F4 /* Security.framework in Frameworks */,
@@ -321,6 +330,9 @@
 		1E5DF9D51727424D00FB6CD1 = {
 			isa = PBXGroup;
 			children = (
+				1E70CCAA17CAF9710066FC70 /* CoreServices.framework */,
+				1E70CCA817CAF96B0066FC70 /* CFNetwork.framework */,
+				1E70CCA617CAF9520066FC70 /* CoreFoundation.framework */,
 				1E5DF9E81727424D00FB6CD1 /* Barista */,
 				1E5DF9FE1727424D00FB6CD1 /* BaristaTests */,
 				1E3B299E172F85AE00D9833A /* BaristaDemo */,
@@ -1070,6 +1082,7 @@
 				1E55B97F17CADE9D00A079F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E5DF9D91727424D00FB6CD1 /* Build configuration list for PBXProject "Barista" */ = {
 			isa = XCConfigurationList;
