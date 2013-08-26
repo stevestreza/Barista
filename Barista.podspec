@@ -49,6 +49,8 @@ Pod::Spec.new do |s|
     end
 
     middleware.subspec 'Authentication' do |authentication|
+      authentication.source_files = 'Barista/Middleware/Authentication/*.{h,m}'
+      
       authentication.subspec 'Basic' do |basicAuth|
         basicAuth.source_files = 'Barista/Middleware/Authentication/Basic/*.{h,m}', 'Barista/Categories/NSData+Base64.{h,m}'
       end

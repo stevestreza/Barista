@@ -103,6 +103,12 @@
 	}
 }
 
+-(void)runForever{
+	while(YES){
+		[[NSRunLoop mainRunLoop] run];
+	}
+}
+
 #pragma mark Sockets
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket{

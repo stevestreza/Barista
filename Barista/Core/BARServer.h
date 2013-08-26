@@ -42,6 +42,11 @@
 -(BOOL)startListening;
 -(BOOL)stopListening;
 
+/*
+ This method will spin a run loop forever. Useful if you're implementing a server without UI.
+ */
+-(void)runForever;
+
 #pragma mark Middleware
 
 -(void)addGlobalMiddleware:(id<BaristaMiddleware>)middleware;
