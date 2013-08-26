@@ -28,7 +28,7 @@
 #import "BaristaTypes.h"
 #import "BARRequest.h"
 
-@interface BARSession : NSObject <BaristaKeyedSubscripting>
+@interface BARSession : NSObject <BaristaKeyedSubscripting, NSCoding>
 
 +(instancetype)sessionFromHTTPCookie:(NSHTTPCookie *)cookie;
 +(instancetype)session;

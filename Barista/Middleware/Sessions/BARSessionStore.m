@@ -37,12 +37,47 @@
 
 @implementation BARSessionStore {
 	NSMutableDictionary *_sessions;
+	NSURL *_storeLocation;
 }
 
 +(instancetype)sessionStoreWithCookieBaseName:(NSString *)cookieBaseName{
-	BARSessionStore *sessionStore = [[BARSessionStore alloc] init];
+	NSURL *storeLocation = [[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+	
+	// This handles both an app in a bundle, and as a command line program.
+	NSString *appSupportDirectoryName = [[NSBundle mainBundle] bundleIdentifier];
+	if(!appSupportDirectoryName){
+		appSupportDirectoryName = [[[NSBundle mainBundle] executableURL] lastPathComponent];
+	}
+	
+	storeLocation = [storeLocation URLByAppendingPathComponent:appSupportDirectoryName];
+	storeLocation = [storeLocation URLByAppendingPathComponent:@"Sessions"];
+	
+	return [self sessionStoreWithCookieBaseName:cookieBaseName storeLocation:storeLocation];
+}
+
++(instancetype)sessionStoreWithCookieBaseName:(NSString *)cookieBaseName storeLocation:(NSURL *)storeLocation{
+	BARSessionStore *sessionStore = [[BARSessionStore alloc] initWithStoreLocation:storeLocation];
 	sessionStore.cookieBaseName = cookieBaseName;
 	return sessionStore;
+}
+
+-(instancetype)initWithStoreLocation:(NSURL *)storeLocation{
+	self = [super init];
+	if(self){
+		if(storeLocation) {
+			if(![[NSFileManager defaultManager] fileExistsAtPath:[storeLocation path]]){
+				NSError *error;
+				if(![[NSFileManager defaultManager] createDirectoryAtURL:storeLocation withIntermediateDirectories:YES attributes:nil error:&error]){
+					NSLog(@"Error creating directory location to persist sessions: '%@'. Defaulting to in-memory only session store.", error);
+					
+					storeLocation = nil;
+				}
+			}
+		}
+		
+		_storeLocation = storeLocation;
+	}
+	return self;
 }
 
 -(BARSession *)sessionForSessionIdentifier:(NSString *)sessionIdentifier withCookie:(NSHTTPCookie *)cookie{
@@ -52,7 +87,15 @@
 	
 	BARSession *session = _sessions[sessionIdentifier];
 	if(!session){
-		session = [BARSession sessionFromHTTPCookie:cookie];
+		NSString *sessionPath = [[_storeLocation URLByAppendingPathComponent:[NSString stringWithFormat:@"sess_%@", sessionIdentifier]] path];
+		if([[NSFileManager defaultManager] fileExistsAtPath:sessionPath]){
+			session = [NSKeyedUnarchiver unarchiveObjectWithFile:sessionPath];
+		}
+		
+		if(!session){
+			session = [BARSession sessionFromHTTPCookie:cookie];
+		}
+		
 		_sessions[sessionIdentifier] = session;
 	}
 
@@ -91,7 +134,11 @@
 		  forConnection:(BARConnection *)connection
 		continueHandler:(void (^)(void))handler{
 	if(request.session){
-		[response addCookie:[request.session cookieWithName:[self cookieName] forRequest:request]];
+		BARSession *session = request.session;
+		[response addCookie:[session cookieWithName:[self cookieName] forRequest:request]];
+		if(_storeLocation){
+			[NSKeyedArchiver archiveRootObject:session toFile:[[_storeLocation URLByAppendingPathComponent:[NSString stringWithFormat:@"sess_%@", session.identifier]] path]];
+		}
 	}
 	handler();
 }
