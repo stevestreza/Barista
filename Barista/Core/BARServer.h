@@ -39,12 +39,14 @@
 @property (nonatomic, readonly, assign) uint16_t port;
 @property (nonatomic, assign, getter=isListening) BOOL listening;
 
+@property (nonatomic, strong) dispatch_queue_t dispatchQueue;
+
 @property (nonatomic, copy) void (^unhandledRequestHandler)(BARRequest *request, BARConnection *connection);
 
 -(BOOL)startListening;
 -(BOOL)stopListening;
 
-/*
+/**
  This method will spin a run loop forever. Useful if you're implementing a server without UI.
  */
 -(void)runForever;

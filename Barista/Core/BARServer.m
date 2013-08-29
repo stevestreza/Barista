@@ -56,6 +56,8 @@
 		_boundHost = boundHost;
 		_port = port;
 		
+		_dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+		
 		_unhandledRequestHandler = [^(BARRequest *request, BARConnection *connection){
 			BARResponse *response = [[BARResponse alloc] init];
 			response.statusCode = 404;
@@ -130,6 +132,7 @@
 #pragma mark Connections
 
 -(void)connection:(BARConnection *)connection didReceiveRequest:(BARRequest *)request{
+	[_connections removeObject:connection];
 	[self processMiddlewareForRequest:request forConnection:connection continueHandler:NULL];
 }
 
@@ -152,53 +155,63 @@
 }
 
 -(void)processMiddlewareForRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
-	if(!middlewareEnumerator){
-		NSArray *middlewareArray = [self globalMiddleware];
-		middlewareEnumerator = [middlewareArray objectEnumerator];
-		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareEnumerator"];
-	}
-	
-	id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
-	if(middleware){
-		if([middleware respondsToSelector:@selector(didReceiveRequest:forConnection:continueHandler:)]){
-			[middleware didReceiveRequest:request forConnection:connection continueHandler:^{
-				[self processMiddlewareForRequest:request forConnection:connection continueHandler:handler];
-			}];
-		}else{
-			[self processMiddlewareForRequest:request forConnection:connection continueHandler:handler];
+	dispatch_async(self.dispatchQueue, ^{
+		@autoreleasepool {
+			NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
+			if(!middlewareEnumerator){
+				NSArray *middlewareArray = [self globalMiddleware];
+				middlewareEnumerator = [middlewareArray objectEnumerator];
+				[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareEnumerator"];
+			}
+			
+			id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
+			if(middleware){
+				if([middleware respondsToSelector:@selector(didReceiveRequest:forConnection:continueHandler:)]){
+					[middleware didReceiveRequest:request forConnection:connection continueHandler:^{
+						[self processMiddlewareForRequest:request forConnection:connection continueHandler:handler];
+					}];
+				}else{
+					[self processMiddlewareForRequest:request forConnection:connection continueHandler:handler];
+				}
+			}else{
+				if(handler){
+					handler();
+				}else if(!connection.didSendResponse && self.unhandledRequestHandler){
+					self.unhandledRequestHandler(request, connection);
+				}
+			}
 		}
-	}else{
-		if(handler){
-			handler();
-		}else if(!connection.didSendResponse && self.unhandledRequestHandler){
-			self.unhandledRequestHandler(request, connection);
-		}
-	}
+	});
 }
 
 -(void)processMiddlewareForResponse:(BARResponse *)response withRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareReverseEnumerator"];
-	if(!middlewareEnumerator){
-		NSArray *middlewareArray = [self globalMiddleware];
-		middlewareEnumerator = [middlewareArray reverseObjectEnumerator];
-		[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareReverseEnumerator"];
-	}
-	
-	id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
-	if(middleware){
-		if([middleware respondsToSelector:@selector(willSendResponse:forRequest:forConnection:continueHandler:)]){
-			[middleware willSendResponse:response forRequest:request forConnection:connection continueHandler:^{
-				[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
-			}];
-		}else{
-			[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
+	dispatch_async(self.dispatchQueue, ^{
+		@autoreleasepool {
+			NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareReverseEnumerator"];
+			if(!middlewareEnumerator){
+				NSArray *middlewareArray = [self globalMiddleware];
+				middlewareEnumerator = [middlewareArray reverseObjectEnumerator];
+				[request setCustomValue:middlewareEnumerator forKey:@"BARServerMiddlewareReverseEnumerator"];
+			}
+			
+			id<BaristaMiddleware> middleware = [middlewareEnumerator nextObject];
+			if(middleware){
+				if([middleware respondsToSelector:@selector(willSendResponse:forRequest:forConnection:continueHandler:)]){
+					[middleware willSendResponse:response forRequest:request forConnection:connection continueHandler:^{
+						[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
+					}];
+				}else{
+					[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
+				}
+			}else{
+				if(handler){
+					handler();
+				}
+				
+				[_connections removeObject:connection];
+			}
 		}
-	}else{
-		if(handler){
-			handler();
-		}
-	}
+	});
 }
 
 @end
