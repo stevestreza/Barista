@@ -133,11 +133,15 @@
 
 -(void)connection:(BARConnection *)connection didReceiveRequest:(BARRequest *)request{
 	[_connections removeObject:connection];
-	[self processMiddlewareForRequest:request forConnection:connection continueHandler:NULL];
+	dispatch_async(self.dispatchQueue, ^{
+		[self processMiddlewareForRequest:request forConnection:connection continueHandler:NULL];
+	});
 }
 
 -(void)connection:(BARConnection *)connection willSendResponse:(BARResponse *)response forRequest:(BARRequest *)request handler:(void (^)(void))handler{
-	[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
+	dispatch_async(self.dispatchQueue, ^{
+		[self processMiddlewareForResponse:response withRequest:request forConnection:connection continueHandler:handler];
+	});
 }
 
 #pragma mark Middleware
@@ -155,7 +159,6 @@
 }
 
 -(void)processMiddlewareForRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	dispatch_async(self.dispatchQueue, ^{
 		@autoreleasepool {
 			NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareEnumerator"];
 			if(!middlewareEnumerator){
@@ -181,11 +184,9 @@
 				}
 			}
 		}
-	});
 }
 
 -(void)processMiddlewareForResponse:(BARResponse *)response withRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler{
-	dispatch_async(self.dispatchQueue, ^{
 		@autoreleasepool {
 			NSEnumerator *middlewareEnumerator = [request customValueForKey:@"BARServerMiddlewareReverseEnumerator"];
 			if(!middlewareEnumerator){
@@ -211,7 +212,6 @@
 				[_connections removeObject:connection];
 			}
 		}
-	});
 }
 
 @end

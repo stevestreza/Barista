@@ -11,6 +11,7 @@
 @interface BARErrorHandler : NSObject <BaristaMiddleware>
 
 + (instancetype)errorHandler;
++ (instancetype)developmentErrorHandler;
 
 /// Whether or not a stack trace is sent back to the browser. Defaults to NO.
 /// If a custom exception handler is set, this property does nothing.

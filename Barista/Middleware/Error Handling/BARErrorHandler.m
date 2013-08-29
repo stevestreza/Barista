@@ -14,6 +14,13 @@
 	return [[self alloc] init];
 }
 
+
++ (instancetype)developmentErrorHandler {
+	BARErrorHandler *handler = [self errorHandler];
+	handler.showsStackTrace = YES;
+	return handler;
+}
+
 - (instancetype)init{
 	if(self = [super init]){
 		__weak BARErrorHandler *weakSelf = self;

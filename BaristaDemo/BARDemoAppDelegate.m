@@ -98,7 +98,7 @@
 	
 	[router addRoute:@"/testException" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
 		// Yes, this is supposed to generate an exception. The whole point is to demonstrate the error handler middleware.
-		id object = @[][0];
+		(void)(@[][0]);
 		
 		return YES;
 	}];
