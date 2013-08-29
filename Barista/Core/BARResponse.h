@@ -32,6 +32,7 @@
 @interface BARResponse : NSObject
 
 @property (nonatomic, readonly) CFHTTPMessageRef message;
+@property (nonatomic, readonly) NSData *messageData;
 
 @property (nonatomic, assign) NSUInteger statusCode;
 @property (nonatomic, strong) NSData *responseData;

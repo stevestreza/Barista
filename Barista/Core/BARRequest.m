@@ -107,23 +107,38 @@ fail:
 #pragma mark Accessors
 
 -(NSString *)HTTPMethod{
-	return (__bridge NSString *)CFHTTPMessageCopyRequestMethod(message);
+	CFStringRef HTTPMethodRef = CFHTTPMessageCopyRequestMethod(message);
+	NSString *HTTPMethod = (__bridge NSString *)HTTPMethodRef;
+	CFRelease(HTTPMethodRef);
+	return HTTPMethod;
 }
 
 -(NSURL *)URL{
-	return (__bridge NSURL *)CFHTTPMessageCopyRequestURL(message);
+	CFURLRef URLRef = CFHTTPMessageCopyRequestURL(message);
+	NSURL *URL = (__bridge NSURL *)URLRef;
+	CFRelease(URLRef);
+	return URL;
 }
 
 -(NSDictionary *)headerFields{
-	return (__bridge NSDictionary *)CFHTTPMessageCopyAllHeaderFields(message);
+	CFDictionaryRef headerFieldsRef = CFHTTPMessageCopyAllHeaderFields(message);
+	NSDictionary *headerFields = (__bridge NSDictionary *)headerFieldsRef;
+	CFRelease(headerFieldsRef);
+	return headerFields;
 }
 
 -(NSData *)bodyData{
-	return (__bridge NSData *)CFHTTPMessageCopyBody(message);
+	CFDataRef bodyDataRef = CFHTTPMessageCopyBody(message);
+	NSData *bodyData = (__bridge NSData *)bodyDataRef;
+	CFRelease(bodyDataRef);
+	return bodyData;
 }
 
 -(NSString *)valueForHeaderField:(NSString *)headerField{
-	return (__bridge NSString *)CFHTTPMessageCopyHeaderFieldValue(message, (__bridge CFStringRef)headerField);
+	CFStringRef headerValueRef = CFHTTPMessageCopyHeaderFieldValue(message, (__bridge CFStringRef)headerField);
+	NSString *headerValue = (__bridge NSString *)headerValueRef;
+	CFRelease(headerValueRef);
+	return headerValue;
 }
 
 #pragma mark Convenience Accessors

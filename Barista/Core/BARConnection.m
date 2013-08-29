@@ -60,11 +60,7 @@
 	self.didSendResponse = YES;
 	
 	[self.server connection:self willSendResponse:response forRequest:self.request handler:^{
-		CFHTTPMessageRef message = response.message;
-		NSData *data = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(message);
-//		NSString *contents = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//		NSLog(@"Sending response:\n%@",contents);
-		[_socket writeData:data withTimeout:5 tag:0];
+		[_socket writeData:[response messageData] withTimeout:5 tag:0];
 	}];
 }
 

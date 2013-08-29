@@ -63,11 +63,18 @@
 	if(!self.headers[@"Connection"]){
 		CFHTTPMessageSetHeaderFieldValue(message, (__bridge CFStringRef)@"Connection", (__bridge CFStringRef)@"close");
 	}
-
+	
 	CFHTTPMessageSetHeaderFieldValue(message, (__bridge CFStringRef)@"Content-Length", (__bridge CFStringRef)[NSString stringWithFormat:@"%li", self.responseData.length]);
 	CFHTTPMessageSetBody(message, (__bridge CFDataRef)self.responseData);
-	
 	return message;
+}
+
+-(NSData *)messageData{
+	CFHTTPMessageRef message = [self message];
+	CFDataRef dataRef = CFHTTPMessageCopySerializedMessage(message);
+	NSData *data = (__bridge NSData *)(dataRef);
+	CFRelease(dataRef);
+	return data;
 }
 
 //-(NSData *)responseData{

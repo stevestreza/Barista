@@ -60,6 +60,7 @@
 	if(self){
 		CFUUIDRef uuidRef = CFUUIDCreate(NULL);
 		NSString *uuid = (__bridge NSString *)CFUUIDCreateString(NULL, uuidRef);
+		CFRelease(uuidRef);
 		_identifier = uuid;
 	}
 	return self;
