@@ -26,7 +26,8 @@
 
 -(void)didReceiveRequest:(BARRequest *)request forConnection:(BARConnection *)connection continueHandler:(void (^)(void))handler {
 	JLRoutes *router = [JLRoutes routesForScheme:request.HTTPMethod.uppercaseString];
-	BOOL didRoute = [router routeURL:request.URL withParameters:@{@"BARRequest": request, @"BARConnection": connection}];
+	NSURL *URL = request.URL;
+	BOOL didRoute = [router routeURL:[NSURL URLWithString:URL.path] withParameters:@{@"BARRequest": request, @"BARConnection": connection}];
 	if(!didRoute){
 		// not handled
 		NSLog(@"Could not handle %@ %@", request.HTTPMethod, request.URL);
