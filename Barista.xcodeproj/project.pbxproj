@@ -89,6 +89,8 @@
 		A998249217CAA39200646828 /* BARBasicAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249017CAA39200646828 /* BARBasicAuthenticator.m */; };
 		A998249517CABAD600646828 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = A998249317CABAD500646828 /* NSData+Base64.h */; };
 		A998249617CABAD600646828 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A998249417CABAD600646828 /* NSData+Base64.m */; };
+		C36D1ED917CFB6D000F5CB12 /* BARErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = C36D1ED717CFB6D000F5CB12 /* BARErrorHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C36D1EDA17CFB6D000F5CB12 /* BARErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D1ED817CFB6D000F5CB12 /* BARErrorHandler.m */; };
 		C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3F297CE17CABA8E00F7AEB5 /* BARRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */; };
 		F524B3B78FCC4D2085BE380A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E44A98267A45BEB8E01B9F /* libPods.a */; };
@@ -213,6 +215,8 @@
 		A998249017CAA39200646828 /* BARBasicAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARBasicAuthenticator.m; sourceTree = "<group>"; };
 		A998249317CABAD500646828 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		A998249417CABAD600646828 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		C36D1ED717CFB6D000F5CB12 /* BARErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARErrorHandler.h; sourceTree = "<group>"; };
+		C36D1ED817CFB6D000F5CB12 /* BARErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARErrorHandler.m; sourceTree = "<group>"; };
 		C3F297CB17CABA8E00F7AEB5 /* BARRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARRouter.h; sourceTree = "<group>"; };
 		C3F297CC17CABA8E00F7AEB5 /* BARRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARRouter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -342,6 +346,7 @@
 				0497751BEAFA4E36AB0305E2 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		1E5DF9E01727424D00FB6CD1 /* Products */ = {
 			isa = PBXGroup;
@@ -426,6 +431,7 @@
 		1E5DFA4D172DE77800FB6CD1 /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
+				C36D1ED617CFB66A00F5CB12 /* Error Handling */,
 				C3F297CA17CABA7B00F7AEB5 /* Router */,
 				1E3B29C4172F990100D9833A /* Files */,
 				1E5DFA71172E4B2B00FB6CD1 /* Body Parsing */,
@@ -533,6 +539,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		C36D1ED617CFB66A00F5CB12 /* Error Handling */ = {
+			isa = PBXGroup;
+			children = (
+				C36D1ED717CFB6D000F5CB12 /* BARErrorHandler.h */,
+				C36D1ED817CFB6D000F5CB12 /* BARErrorHandler.m */,
+			);
+			path = "Error Handling";
+			sourceTree = "<group>";
+		};
 		C3F297CA17CABA7B00F7AEB5 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +583,7 @@
 				1E3B29C7172F993500D9833A /* BARStaticFileServer.h in Headers */,
 				1E5DFA7B172F81F300FB6CD1 /* BARMustacheTemplateRenderer.h in Headers */,
 				C3F297CD17CABA8E00F7AEB5 /* BARRouter.h in Headers */,
+				C36D1ED917CFB6D000F5CB12 /* BARErrorHandler.h in Headers */,
 				1E5DFA7F172F82EA00FB6CD1 /* BARTemplateRenderer.h in Headers */,
 				A998249117CAA39200646828 /* BARBasicAuthenticator.h in Headers */,
 				A998249517CABAD600646828 /* NSData+Base64.h in Headers */,
@@ -807,6 +823,7 @@
 				1E55B96F17CAD38E00A079F4 /* BARAuthenticator.m in Sources */,
 				1E5DFA70172E433B00FB6CD1 /* NSData+BaristaExtensions.m in Sources */,
 				1E5DFA75172E4B4300FB6CD1 /* BARBodyParser.m in Sources */,
+				C36D1EDA17CFB6D000F5CB12 /* BARErrorHandler.m in Sources */,
 				1E5DFA7C172F81F300FB6CD1 /* BARMustacheTemplateRenderer.m in Sources */,
 				C3F297CE17CABA8E00F7AEB5 /* BARRouter.m in Sources */,
 				1E5DFA80172F82EA00FB6CD1 /* BARTemplateRenderer.m in Sources */,

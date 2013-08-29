@@ -57,51 +57,11 @@
 	NSString *textData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSLog(@"Received request\n-\n%@\n-", textData);
 	
-	NSData *crlf = [[self class] CRLFData];
-	NSData *crlfcrlf = [[self class] CRLFCRLFData];
-	NSInteger locationOfFirstNewline = [data rangeOfData:crlf     options:0 range:NSMakeRange(0, data.length)].location;
-	NSInteger locationOfHeaderEnd    = [data rangeOfData:crlfcrlf options:0 range:NSMakeRange(0, data.length)].location;
-	
-	// parse the first line, e.g. "GET /foo HTTP/1.1"
-	NSData *requestTypeData = [data subdataWithRange:NSMakeRange(0, locationOfFirstNewline)];
-	NSString *requestType = [[NSString alloc] initWithData:requestTypeData encoding:NSUTF8StringEncoding];
-	NSArray *requestTypePieces = [requestType componentsSeparatedByString:@" "];
-	NSString *messageType = requestTypePieces[0];
-	NSString *messagePath = requestTypePieces[1];
-	NSString *HTTPVersion = requestTypePieces[2];
-	
-	// parse headers
-	NSData *headersData = [data subdataWithRange:NSMakeRange(locationOfFirstNewline + crlf.length, locationOfHeaderEnd - locationOfFirstNewline - crlf.length)];
-	NSString *headersString = [[NSString alloc] initWithData:headersData encoding:NSASCIIStringEncoding];
-	NSArray *headersList = [headersString componentsSeparatedByString:@"\r\n"];
-	
-	NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionaryWithCapacity:headersList.count];
-	[headersList enumerateObjectsUsingBlock:^(NSString *header, NSUInteger idx, BOOL *stop) {
-		NSArray *headerFields = [header componentsSeparatedByString:@": "];
-		mutableHeaders[headerFields[0]] = headerFields[1];
-	}];
-	NSDictionary *headers = [mutableHeaders copy];
-	NSString *hostHeader = headers[@"Host"];
-	
-	NSURL *url = [NSURL URLWithString:messagePath];
-	if(!url){
-		url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@", hostHeader, messagePath]];
-	}
-	
 	if(self = [super init]){
-		message = CFHTTPMessageCreateRequest(NULL, (__bridge CFStringRef)messageType, (__bridge CFURLRef)url, (__bridge CFStringRef)HTTPVersion);
-		
-		[headers enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
-			CFHTTPMessageSetHeaderFieldValue(message, (__bridge CFStringRef)key, (__bridge CFStringRef)value);
-		}];
-		
-		NSData *bodyData = [data subdataWithRange:NSMakeRange(locationOfHeaderEnd + crlfcrlf.length, data.length - locationOfHeaderEnd - crlfcrlf.length)];
-		CFHTTPMessageSetBody(message, (__bridge CFDataRef)bodyData);
+		message = CFHTTPMessageCreateEmpty(NULL, YES);
+		CFHTTPMessageAppendBytes(message, [data bytes], [data length]);
 	}
 	return self;
-	
-fail:
-	return nil;
 }
 
 #pragma mark Accessors

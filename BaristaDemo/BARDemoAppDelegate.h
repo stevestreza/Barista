@@ -36,6 +36,7 @@
 #import <Barista/BARStaticFileServer.h>
 #import <Barista/BARBasicAuthenticator.h>
 #import <Barista/BARRouter.h>
+#import <Barista/BARErrorHandler.h>
 
 @interface BARDemoAppDelegate : NSObject <NSApplicationDelegate>
 
