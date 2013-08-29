@@ -36,6 +36,7 @@
 	
 	NSURL *webAppURL = [[NSBundle mainBundle] URLForResource:@"WebApp" withExtension:@""];
 	
+	[server addGlobalMiddleware:[BARErrorHandler errorHandler]];
 	[server addGlobalMiddleware:[BARCookieParser cookieParser]];
 	[server addGlobalMiddleware:[BARSessionStore sessionStoreWithCookieBaseName:@"barista_demo_app"]];
 	[server addGlobalMiddleware:[BARCompressor compressor]];
@@ -92,6 +93,13 @@
 		response.statusCode = 200;
 		response.body = @{@"omg": @"wtf"};
 		[connection sendResponse:response];
+		return YES;
+	}];
+	
+	[router addRoute:@"/testException" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+		// Yes, this is supposed to generate an exception. The whole point is to demonstrate the error handler middleware.
+		id object = @[][0];
+		
 		return YES;
 	}];
 	
