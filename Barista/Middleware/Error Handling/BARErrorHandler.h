@@ -12,4 +12,11 @@
 
 + (instancetype)errorHandler;
 
+/// Whether or not a stack trace is sent back to the browser. Defaults to NO.
+/// If a custom exception handler is set, this property does nothing.
+@property (nonatomic) BOOL showsStackTrace;
+
+/// Allows for custom handling on an exception. If this is nil, the exception that has been caught will be re-raised.
+@property (nonatomic, copy) void(^exceptionHandler)(BARRequest *request, BARConnection *connection, NSException *exception);
+
 @end
