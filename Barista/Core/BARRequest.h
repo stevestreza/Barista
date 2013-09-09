@@ -35,6 +35,8 @@
 @property (nonatomic, readonly, copy) NSDictionary *headerFields;
 @property (nonatomic, readonly, copy) NSData *bodyData;
 
+- (void)appendRequestData:(NSData *)data;
+
 -(NSString *)valueForHeaderField:(NSString *)headerField;
 
 -(NSString *)userAgent;
