@@ -1033,6 +1033,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Barista/Barista-Prefix.pch";
 				INFOPLIST_FILE = "Barista/Barista-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = Barista;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1049,6 +1050,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Barista/Barista-Prefix.pch";
 				INFOPLIST_FILE = "Barista/Barista-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = Barista;
 				WRAPPER_EXTENSION = framework;
 			};
