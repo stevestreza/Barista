@@ -64,6 +64,10 @@
 	return self;
 }
 
+- (void)appendRequestData:(NSData *)data {
+	CFHTTPMessageAppendBytes(message, [data bytes], [data length]);
+}
+
 #pragma mark Accessors
 
 -(NSString *)HTTPMethod{

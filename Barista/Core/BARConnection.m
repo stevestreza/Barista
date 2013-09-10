@@ -29,6 +29,8 @@
 
 @implementation BARConnection {
 	GCDAsyncSocket *_socket;
+	NSMutableData *_requestData;
+	NSUInteger _expectedContentLength;
 	__weak BARServer *_server;
 }
 
@@ -50,7 +52,8 @@
 }
 
 -(void)startConnection{
-	[_socket readDataWithTimeout:10 tag:1];
+	_requestData = [[NSMutableData alloc] init];
+	[_socket readDataWithTimeout:10 tag:0];
 }
 
 #pragma mark Response
@@ -71,10 +74,23 @@
  * Not called if there is an error.
  **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-	_request = [BARRequest requestFromData:data];
+	if (!_request) {
+		// first packet - this is probably the headers
+		_request = [BARRequest requestFromData:data];
+		_expectedContentLength = [_request.headerFields[@"Content-Length"] integerValue];
+	} else {
+		[_requestData appendData:data];
+	}
+	
+	if ([_requestData length] == _expectedContentLength) {
+		[_request appendRequestData:_requestData];
+		[self.server connection:self didReceiveRequest:_request];
+	} else {
+		[_socket readDataWithTimeout:10 tag:0];
+	}
+	
 //	NSLog(@"Request: %@", _request);
 //	NSLog(@"-- parts:\n%@\n%@\n%@\n%@\n%@", _request.HTTPMethod, _request.URL, [_request userAgent], _request.bodyData, _request.headerFields);
-	[self.server connection:self didReceiveRequest:_request];
 }
 
 /**
